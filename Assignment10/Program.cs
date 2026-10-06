@@ -38,7 +38,34 @@ namespace Assignment10
 
             #endregion
 
-            
+            #region Element Operators
+
+            #region 1. Get first Product out of Stock 
+
+            var firstProductOutOfStock = ProductsList.First(p => p.UnitsInStock == 0);
+
+            Console.WriteLine($"\nFirst Product Out of Stock: {firstProductOutOfStock.ProductName}");
+
+            #endregion
+
+            #region 2. Return the first product whose Price > 1000, unless there is no match, in which case null is returned.
+
+            var firstProductPriceGreaterThan1000 = ProductsList.FirstOrDefault(p => p.UnitPrice > 1000);
+            Console.WriteLine($"\nFirst Product with Price > $1000: {firstProductPriceGreaterThan1000?.ProductName ?? "None"}");
+
+            #endregion
+
+            #region 3. Retrieve the second number greater than 5 
+
+            int[] arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            var s = arr.Where(element => element > 5).Skip(1).FirstOrDefault();
+            Console.WriteLine($"\nSecond Number Greater than 5: {s}");
+
+            #endregion
+
+            #endregion
+
         }
 
         static void PrintProducts(List<Product> products, string title)
@@ -46,7 +73,7 @@ namespace Assignment10
             Console.WriteLine("\n" + title);
             foreach (var product in products)
             {
-                Console.WriteLine($"Product ID: {product.ProductID}, Product Name: {product.ProductName}, Category: {product.Category}, Unit Price: {product.UnitPrice}, Units in Stock: {product.UnitsInStock}");
+                Console.WriteLine($"Product Name: {product.ProductName}, Unit Price: {product.UnitPrice}, Units in Stock: {product.UnitsInStock}");
             }
         }
 
