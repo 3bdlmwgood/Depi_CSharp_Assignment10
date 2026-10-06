@@ -101,6 +101,45 @@ namespace Assignment10
 
             #endregion
 
+            #region 4. Get the total of the numbers in an array.
+
+            int[] numbersArray = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            var total = numbersArray.Sum();
+            Console.WriteLine($"\nTotal of Numbers: {total}");
+
+            #endregion
+
+            #region 5. Get the total number of characters of all words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+            string[] dictionaryWords = System.IO.File.ReadAllLines("dictionary_english.txt");
+
+            var totalCharacters = dictionaryWords.Sum(word => word.Length);
+
+            Console.WriteLine($"\nTotal Characters in Dictionary: {totalCharacters}");
+
+            #endregion
+
+            #region 6. Get the length of the shortest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+            var shortestWordLength = dictionaryWords.Min(word => word.Length);
+            Console.WriteLine($"\nLength of Shortest Word: {shortestWordLength}");
+
+            #endregion
+
+            #region 7. Get the length of the longest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+            var longestWordLength = dictionaryWords.Max(word => word.Length);
+            Console.WriteLine($"\nLength of Longest Word: {longestWordLength}");
+
+            #endregion
+
+            #region 8. Get the average length of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+            var averageWordLength = dictionaryWords.Average(word => word.Length);
+            Console.WriteLine($"\nAverage Word Length: {(int)(averageWordLength)}");
+
+            #endregion
+
             #endregion
 
         }
