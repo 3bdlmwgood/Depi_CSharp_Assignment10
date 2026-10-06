@@ -142,15 +142,95 @@ namespace Assignment10
 
             #endregion
 
+            #region Ordering Operators
+
+            #region 1. Sort a list of products by name
+
+            var orderedProductsByName = ProductsList.OrderBy(p => p.ProductName);
+
+            PrintProducts(orderedProductsByName.ToList(), "Products Ordered by Name:");
+
+            #endregion
+
+            #region 2. Uses a custom comparer to do a case-insensitive sort of the words in an array. (missed)
+
+            string[] WordsArray = {"aPPle", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
+
+            var orderedWordsCaseInsensitive = WordsArray.OrderBy(word => word, StringComparer.OrdinalIgnoreCase);
+
+            PrintArray(orderedWordsCaseInsensitive.ToArray(), "Words Ordered Case-Insensitive:");
+
+            #endregion
+
+            #region 3. Sort a list of products by units in stock from highest to lowest.
+
+            var orderedProductsByUnitsInStock = ProductsList.OrderByDescending(p => p.UnitsInStock);
+
+            PrintProducts(orderedProductsByUnitsInStock.ToList(), "Products Ordered by Units in Stock (Descending):");
+
+            #endregion
+
+            #region 4. Sort a list of digits, first by length of their name, and then alphabetically by the name itself.
+
+            string[] DigitsArray = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
+            var orderedDigits = DigitsArray.OrderBy(digit => digit.Length).ThenBy(digit => digit);
+
+            PrintArray(orderedDigits.ToArray(), "Digits Ordered by Length and Alphabetically:");
+
+            #endregion
+
+            #region 5. Sort first by-word length and then by a case-insensitive sort of the words in an array. (case-insensitive missed)
+
+            string[] WordsArray2 = { "aPPle", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
+
+            var orderedWordsByLengthThenCaseInsensitive = WordsArray2.OrderBy(word => word.Length).ThenBy(word => word, StringComparer.OrdinalIgnoreCase);
+
+            PrintArray(orderedWordsByLengthThenCaseInsensitive.ToArray(), "Words Ordered by Length and Case-Insensitive:");
+
+            #endregion
+
+            #region 6. Sort a list of products, first by category, and then by unit price, from highest to lowest.
+
+            var orderedProductsByCategoryThenPrice = ProductsList.OrderBy(p => p.Category).ThenByDescending(p => p.UnitPrice);
+
+            PrintProducts(orderedProductsByCategoryThenPrice.ToList(), "Products Ordered by Category and Unit Price (Descending):");
+
+            #endregion
+
+            #region 7. Sort first by-word length and then by a case-insensitive descending sort of the words in an array.
+
+            string[] WordsArray3 = { "aPPle", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
+
+            var orderedWordsByLengthThenCaseInsensitiveDesc = WordsArray3.OrderBy(word => word.Length).ThenByDescending(word => word, StringComparer.OrdinalIgnoreCase);
+
+            PrintArray(orderedWordsByLengthThenCaseInsensitiveDesc.ToArray(), "Words Ordered by Length and Case-Insensitive Descending:");
+
+            #endregion
+
+            #region 8. Create a list of all digits in the array whose second letter is 'i' that is reversed from the order in the original array.
+
+            string[] DigitsArr = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
+            var filteredAndReversedDigits = DigitsArr.Where(digit => digit[1] == 'i').Reverse();
+
+            PrintArray(filteredAndReversedDigits.ToArray(), "Digits with Second Letter 'i' Reversed:");
+
+            #endregion
+
+            #endregion
         }
 
         static void PrintProducts(List<Product> products, string title)
         {
             Console.WriteLine("\n" + title);
+
+            Console.WriteLine($"\n{"Product Name",-35} {"Category",-20} {"Unit Price",-15} {"Units in Stock",-15}");
+
+            Console.WriteLine(new string('-', 95));
+
             foreach (var product in products)
-            {
-                Console.WriteLine($"Product Name: {product.ProductName}, Unit Price: {product.UnitPrice}, Units in Stock: {product.UnitsInStock}");
-            }
+                Console.WriteLine($"{product.ProductName,-35} {product.Category,-20} {product.UnitPrice,-15} {product.UnitsInStock,-15}");
         }
 
         static void PrintArray(string[] arr, string title)
