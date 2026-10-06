@@ -66,6 +66,43 @@ namespace Assignment10
 
             #endregion
 
+            #region Aggregate Operators
+
+            #region 1. Uses Count to get the number of odd numbers in the array
+
+            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            var oddNumbersCount = numbers.Count(n => n % 2 != 0);
+
+            Console.WriteLine($"\nNumber of Odd Numbers: {oddNumbersCount}");
+
+            #endregion
+
+            #region 2. Return a list of customers and how many orders each has.
+
+            var customerOrderCounts = CustomersList.Select(c => new { Customer = c, OrderCount = c.Orders.Count() });
+
+            foreach (var customerOrder in customerOrderCounts)
+            {
+                Console.WriteLine($"Customer: {customerOrder.Customer.CustomerName}, Order Count: {customerOrder.OrderCount}");
+            }
+
+            #endregion
+
+            #region 3. Return a list of categories and how many products each has  (missed)
+
+            var categoryProductCounts = ProductsList.GroupBy(p => p.Category)
+                                                    .Select(g => new { Category = g.Key, ProductCount = g.Count() });
+
+            foreach (var categoryProduct in categoryProductCounts)
+            {
+                Console.WriteLine($"Category: {categoryProduct.Category}, Product Count: {categoryProduct.ProductCount}");
+            }
+
+            #endregion
+
+            #endregion
+
         }
 
         static void PrintProducts(List<Product> products, string title)
